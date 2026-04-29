@@ -8,3 +8,8 @@ models.txt
 health_data.csv
 node_modules/
 Server/node_modules/
+*.png
+*.txt
+*.html
+!templates/*.html
+!README.md
