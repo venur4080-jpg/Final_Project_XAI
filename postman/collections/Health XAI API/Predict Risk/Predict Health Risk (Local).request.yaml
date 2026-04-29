@@ -1,0 +1,53 @@
+$kind: http-request
+name: 'Predict Health Risk (Local)'
+method: POST
+url: 'http://127.0.0.1:5000/predict'
+order: 2000
+description: 'Local test - Predict health risk level for a patient. Uses rule engine + Gemini AI for XAI explanation. Requires Node.js server running on port 5000.'
+headers:
+  - key: Content-Type
+    value: application/json
+body:
+  type: json
+  content: |-
+    {
+      "disease": "Heart Failure",
+      "patient": {
+        "age": 65,
+        "weight": 80,
+        "height": 175
+      },
+      "vitals": {
+        "heartRate": 120,
+        "spo2": 90,
+        "temperature": 37.5
+      }
+    }
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test("Status code is 200", function () {
+          pm.response.to.have.status(200);
+      });
+      pm.test("Response time is less than 10000ms", function () {
+          pm.expect(pm.response.responseTime).to.be.below(10000);
+      });
+      pm.test("Response is JSON", function () {
+          pm.response.to.be.json;
+      });
+      pm.test("Response has required fields: disease, prediction, ruleExplanation, recommendation", function () {
+          const json = pm.response.json();
+          pm.expect(json).to.have.property("disease");
+          pm.expect(json).to.have.property("prediction");
+          pm.expect(json).to.have.property("ruleExplanation");
+          pm.expect(json).to.have.property("recommendation");
+      });
+      pm.test("'prediction' is one of HIGH, MODERATE, LOW", function () {
+          const json = pm.response.json();
+          pm.expect(["HIGH", "MODERATE", "LOW"]).to.include(json.prediction);
+      });
+      pm.test("'recommendation' is a non-empty string", function () {
+          const json = pm.response.json();
+          pm.expect(json.recommendation).to.be.a("string").and.to.have.length.above(0);
+      });

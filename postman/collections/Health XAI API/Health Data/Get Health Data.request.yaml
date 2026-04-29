@@ -1,0 +1,29 @@
+$kind: http-request
+name: Get Health Data
+method: GET
+url: '{{baseUrl}}/api/data'
+order: 1000
+description: Returns the latest health vitals row (Temperature, BPM, Cough, explanation, Avg_BPM, CoughStatus). Returns stale/disconnected status if data is older than 10 seconds.
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test("Status code is 200 or 404", function () {
+          pm.expect([200, 404]).to.include(pm.response.code);
+      });
+      pm.test("Response time is less than 3000ms", function () {
+          pm.expect(pm.response.responseTime).to.be.below(3000);
+      });
+      if (pm.response.code === 200) {
+          pm.test("Response is JSON", function () {
+              pm.response.to.be.json;
+          });
+          pm.test("Response has at least one expected health data field", function () {
+              const json = pm.response.json();
+              const expectedFields = ["Temperature", "BPM", "Cough", "explanation"];
+              const hasField = expectedFields.some(function (field) {
+                  return json.hasOwnProperty(field);
+              });
+              pm.expect(hasField).to.be.true;
+          });
+      }

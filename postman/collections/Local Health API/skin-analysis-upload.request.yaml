@@ -1,0 +1,28 @@
+$kind: http-request
+name: Skin Analysis (upload)
+method: POST
+url: '{{baseUrl}}/api/skin_analysis'
+order: 2000
+body:
+  type: formdata
+  content:
+    - key: symptoms
+      type: text
+      value: 'redness, itchiness'
+    - key: image
+      type: file
+      src: 'C:/Users/VENU R/Desktop/Final_Project_XAI/Images for skin alllergy/OIP.webp'
+headers:
+  - key: Accept
+    value: application/json, text/html
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test('Status is 200 or 400', function () {
+        pm.expect([200, 400]).to.include(pm.response.code);
+      });
+      pm.test('Response type JSON or HTML', function () {
+        const ct = pm.response.headers.get('Content-Type') || '';
+        pm.expect(ct.includes('application/json') || ct.includes('text/html')).to.be.true;
+      });

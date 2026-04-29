@@ -1,0 +1,30 @@
+$kind: http-request
+name: Analyze Vital
+method: POST
+url: '{{baseUrl}}/api/analyze_vital'
+order: 1000
+headers:
+  - key: Content-Type
+    value: application/json
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test('Status code is 200', function () {
+        pm.response.to.have.status(200);
+      });
+      pm.test('Response is JSON', function () {
+        pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');
+        pm.response.to.be.withBody;
+        pm.response.to.be.json;
+      });
+      const json = pm.response.json();
+      pm.test("Has 'analysis' as a string", function () {
+        pm.expect(json).to.have.property('analysis');
+        pm.expect(typeof json.analysis).to.eql('string');
+      });
+      pm.test("'analysis' contains at least one keyword", function () {
+        const s = json.analysis || '';
+        const keywords = ['Status', 'Explanation', 'Actionable'];
+        pm.expect(keywords.some(k => s.includes(k))).to.be.true;
+      });

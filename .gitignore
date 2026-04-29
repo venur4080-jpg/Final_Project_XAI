@@ -1,0 +1,10 @@
+.env
+__pycache__/
+*.log
+.venv/
+uploads/
+mdls.txt
+models.txt
+health_data.csv
+node_modules/
+Server/node_modules/

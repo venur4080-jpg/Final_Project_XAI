@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XAI Health Dashboard</title>
+    <style>
+        :root {
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --accent-color: #03dac6;
+            --text-color: #e0e0e0;
+            --danger-color: #cf6679;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .full-width {
+            grid-column: span 2;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: var(--accent-color);
+            margin-top: 0;
+        }
+
+        /* Vitals Grid */
+        .vitals-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            text-align: center;
+        }
+
+        .vital-box {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .vital-value {
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        .vital-label {
+            font-size: 0.9em;
+            opacity: 0.7;
+            margin-top: 5px;
+        }
+
+        .avg-bpm-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-top: 20px;
+        }
+
+        .avg-bpm-box {
+            background: rgba(3, 218, 198, 0.05);
+            /* very slight tint */
+            border: 1px solid #03dac6;
+            /* explicit thin border */
+            border-radius: 8px;
+            padding: 15px 30px;
+            text-align: center;
+            width: fit-content;
+            cursor: pointer;
+        }
+
+        .info-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px 40px;
+            margin-top: 15px;
+        }
+
+        .info-title {
+            color: var(--accent-color);
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-text {
+            color: #aaa;
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+
+        /* Images */
+        img {
+            max-width: 100%;
+            border-radius: 8px;
+        }
+
+        iframe {
+            width: 100%;
+            height: 400px;
+            border: none;
+            border-radius: 8px;
+            background: white;
+        }
+
+        /* Chat */
+        .chat-box {
+            height: 300px;
+            overflow-y: auto;
+            border: 1px solid #333;
+            padding: 10px;
+            margin-bottom: 10px;
+            background: #000;
+        }
+
+        .msg {
+            margin: 5px 0;
+            padding: 5px 10px;
+            border-radius: 5px;
+            display: inline-block;
+            max-width: 80%;
+        }
+
+        .user-msg {
+            background: #333;
+            color: white;
+            text-align: right;
+            display: block;
+            margin-left: auto;
+        }
+
+        .bot-msg {
+            background: var(--accent-color);
+            color: black;
+        }
+
+        /* Inputs */
+        input[type="text"],
+        textarea {
+            width: 70%;
+            padding: 10px;
+            background: #333;
+            border: 1px solid #555;
+            color: white;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: var(--accent-color);
+            border: none;
+            color: black;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--accent-color);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            visibility: hidden;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Interactive Vitals */
+        .vital-box {
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .vital-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(3, 218, 198, 0.3);
+            border-color: #03dac6;
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: #1e1e1e;
+            padding: 30px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            border: 2px solid #03dac6;
+            color: #e0e0e0;
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #cf6679;
+        }
+
+        .modal-header {
+            font-size: 1.5em;
+            color: #03dac6;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+        }
+
+        .modal-body {
+            font-size: 1.1em;
+            line-height: 1.6;
+            white-space: pre-wrap;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <!-- Analysis Modal -->
+    <div id="analysis-modal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <div id="modal-title" class="modal-header">Analysis</div>
+            <div id="modal-body" class="modal-body">Loading...</div>
+        </div>
+    </div>
+
+    <h1 style="text-align:center;">XAI Health Monitor</h1>
+
+    <div class="container">
+        <!-- Live Vitals -->
+        <div class="card full-width">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h2>Real-time Vitals</h2>
+                <div style="opacity: 0.6; font-size: 0.85em;" id="last-updated">Last updated: Never</div>
+            </div>
+            <div class="vitals-grid">
+                <div class="vital-box" onclick="analyzeVital('Heart Rate', 'bpm')">
+                    <div class="vital-value" id="bpm">--</div>
+                    <div class="vital-label">Heart Rate (BPM)</div>
+                </div>
+                <div class="vital-box" onclick="analyzeVital('Body Temperature', 'temp')">
+                    <div class="vital-value" id="temp">--</div>
+                    <div class="vital-label">Temperature (°C)<br><span style="font-size: 0.8em; color: #ff9800;">--
+                            °F</span></div>
+                </div>
+                <div class="vital-box" onclick="analyzeVital('Cough Count', 'cough')">
+                    <div class="vital-value" id="cough" style="font-size: 1.8em;">Normal</div>
+                    <div class="vital-label">Cough Status</div>
+                </div>
+                <div class="vital-box" id="cold-box" onclick="analyzeVital('Cold Risk Status', 'cold-risk')"
+                    style="border: 2px solid transparent;">
+                    <div class="vital-value" id="cold-risk">--</div>
+                    <div class="vital-label">Cold Status</div>
+                </div>
+            </div>
+
+            <div style="display: flex; justify-content: center; margin-top: 20px;">
+                <div class="avg-bpm-box" id="avg-bpm-parent"
+                    onclick="analyzeVital('Average Heart Rate (30s)', 'avg-bpm')"
+                    style="padding: 15px 30px; display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 220px;">
+                    <div class="vital-value" id="avg-bpm" style="font-size: 1.5em; font-weight: bold;">Place Finger
+                    </div>
+                    <div class="vital-label" style="opacity: 0.8;">Avg BPM (30s)</div>
+                </div>
+            </div>
+
+            <div
+                style="margin-top: 25px; padding: 12px 15px; background: rgba(3, 218, 198, 0.1); border-left: 4px solid #03dac6; border-radius: 4px; display: flex; align-items: center;">
+                <strong style="color: #03dac6; margin-right: 5px;">AI Assessment:</strong> <span id="ai-insight"
+                    style="color: #aaa;">Sensors Disconnected (Check Hardware)</span>
+            </div>
+        </div>
+
+        <!-- Understanding Your Vitals -->
+        <div class="card full-width">
+            <h3
+                style="color: #e0e0e0; display: flex; align-items: center; gap: 8px; font-size: 1.1em; margin-bottom: 20px;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="16" x2="12" y2="12"></line>
+                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                </svg>
+                Understanding Your Vitals
+            </h3>
+
+            <div class="info-section">
+                <div>
+                    <div class="info-title">Heart Rate (BPM)</div>
+                    <div class="info-text">
+                        A normal resting heart rate for adults ranges from <strong style="color: #e0e0e0;">60 to 100
+                            beats per minute (BPM)</strong>. A lower heart rate at rest generally implies more efficient
+                        heart function and better cardiovascular fitness.
+                    </div>
+                </div>
+                <div>
+                    <div class="info-title">Body Temperature</div>
+                    <div class="info-text">
+                        Normal human body temperature is typically around <strong style="color: #e0e0e0;">37 °C (98.6
+                            °F)</strong>. A temperature above 37.5 °C (99.5 °F) indicates a fever, while dropping below
+                        35 °C (95 °F) can lead to hypothermia.
+                    </div>
+                </div>
+                <div>
+                    <div class="info-title">Cough Status</div>
+                    <div class="info-text">
+                        Occasional coughing is normal and helps clear your airways. Repeated or continuous coughing over
+                        a short period may indicate an irritation, allergy, or respiratory infection.
+                    </div>
+                </div>
+                <div>
+                    <div class="info-title">Cold Risk</div>
+                    <div class="info-text">
+                        Cold risk is assessed when the skin or body surface temperature drops significantly below normal
+                        bounds (e.g., < 24 °C surface temp). Prolonged exposure to cold can be dangerous. </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chatbot -->
+            <div class="card">
+                <h2>Medical Assistant</h2>
+                <div class="chat-box" id="chat-history"></div>
+                <div style="display: flex; gap: 10px;">
+                    <input type="text" id="chat-input" placeholder="Ask about your vitals...">
+                    <button onclick="sendMessage()">Send</button>
+                </div>
+            </div>
+
+            <!-- Skin Allergy -->
+            <div class="card">
+                <h2>Skin Allergy Analysis</h2>
+                <p>Upload a photo or describe symptoms.</p>
+                <textarea id="skin-symptoms" placeholder="Describe symptoms (e.g. Red itchy rash)..."
+                    style="width: 100%; margin-bottom: 10px;"></textarea>
+                <input type="file" id="skin-image" accept="image/*" style="margin-bottom: 10px;">
+                <br>
+                <button onclick="analyzeSkin()">Analyze <div class="loader" id="skin-loader"></div></button>
+                <div id="skin-result"
+                    style="margin-top: 10px; background: #000; padding: 15px; border-radius: 5px; min-height: 130px; max-height: 400px; overflow-y: auto; font-family: sans-serif; line-height: 1.5;">
+                </div>
+            </div>
+
+            <!-- Visualizations -->
+            <div class="card full-width">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                    <h2 style="margin: 0;">Explainable AI (XAI) Analysis</h2>
+                    <button onclick="regenerateXAI()"
+                        style="background: #03dac6; color: #000; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold;">
+                        Analyze Live Data
+                    </button>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr; gap: 20px; position: relative;">
+                    <div style="text-align: center;">
+                        <img id="lime-image" src="/api/xai/lime_plot" alt="Local Risk (LIME)"
+                            style="width: 100%; border-radius: 8px; border: 1px solid #333;">
+                    </div>
+                    <div style="text-align: center;">
+                        <img id="shap-image" src="/api/xai/shap_plot" alt="Global Logic (SHAP)"
+                            style="width: 100%; border-radius: 8px; border: 1px solid #333;">
+                    </div>
+
+                    <!-- Overlay covers both -->
+                    <div id="loading-overlay"
+                        style="display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); color: white; justify-content: center; align-items: center; font-size: 1.5em; border-radius: 8px;">
+                        Generating Analysis...
+                    </div>
+                </div>
+
+                <!-- XAI Text Explanation -->
+                <div
+                    style="margin-top: 20px; padding: 15px; background: #2c2c2c; border-radius: 8px; border-left: 4px solid #03dac6;">
+                    <h3 style="color: #03dac6; margin-top: 0;">AI Medical Explanation</h3>
+                    <div id="xai-text" style="font-style: italic; color: #ccc;">Loading explanation...</div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            async function regenerateXAI() {
+                const btn = document.querySelector('button[onclick="regenerateXAI()"]');
+                const limeImg = document.getElementById('lime-image');
+                const shapImg = document.getElementById('shap-image');
+                const loading = document.getElementById('loading-overlay');
+
+                btn.disabled = true;
+                btn.innerText = "Analyzing...";
+                loading.style.display = 'flex';
+
+                try {
+                    const response = await fetch('/api/xai/regenerate', { method: 'POST' });
+                    const data = await response.json();
+
+                    if (data.status === 'success') {
+                        // Refresh images with timestamp
+                        const t = new Date().getTime();
+                        limeImg.src = '/api/xai/lime_plot?t=' + t;
+                        shapImg.src = '/api/xai/shap_plot?t=' + t;
+                        loadXaiText(); // Refresh text
+                    } else {
+                        alert("Analysis failed: " + data.message);
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert("Error connecting to server.");
+                } finally {
+                    btn.disabled = false;
+                    btn.innerText = "Analyze Live Data";
+                    loading.style.display = 'none';
+                }
+            }
+
+            // Global context for chat and charts
+            let currentVitals = {};
+
+            // Polling Vitals
+            async function updateVitals() {
+                try {
+                    const res = await fetch('/api/data');
+                    const data = await res.json();
+
+                    if (data.error) return;
+
+                    // Handle BPM (Show -- if 0)
+                    const bpmVal = parseInt(data.BPM);
+                    const bpmEl = document.getElementById('bpm');
+                    const bpmBox = bpmEl.parentElement;
+                    if (bpmVal > 0) {
+                        bpmEl.innerText = bpmVal;
+                        if (bpmVal < 60 || bpmVal > 100) {
+                            bpmBox.querySelector('.vital-label').innerHTML = `Heart Rate (BPM)<br><span style="font-weight: bold; color: #cf6679;">High Risk</span>`;
+                            bpmBox.style.background = "rgba(207, 102, 121, 0.2)";
+                            bpmBox.style.border = "2px solid #cf6679";
+                        } else {
+                            bpmBox.querySelector('.vital-label').innerHTML = `Heart Rate (BPM)<br><span style="font-weight: bold; color: #03dac6;">Normal</span>`;
+                            bpmBox.style.background = "rgba(255, 255, 255, 0.05)";
+                            bpmBox.style.border = "none";
+                        }
+                    } else {
+                        bpmEl.innerText = "--";
+                        bpmBox.querySelector('.vital-label').innerHTML = `Heart Rate (BPM)`;
+                        bpmBox.style.background = "rgba(255, 255, 255, 0.05)";
+                        bpmBox.style.border = "none";
+                    }
+
+                    // Handle Temperature
+                    const tVal = parseFloat(data.Temperature);
+                    const tempEl = document.getElementById('temp');
+                    const tempBox = tempEl.parentElement;
+
+                    // Add fahrenheit conversion
+                    const toFahrenheit = (c) => ((c * 9 / 5) + 32).toFixed(1);
+
+                    if (tVal > 0) {
+                        tempEl.innerText = data.Temperature;
+
+                        // Visual Alert for Temperature based on specific ranges
+                        if (tVal <= 35) {
+                            tempBox.querySelector('.vital-label').innerHTML = `Temperature (°C)<br><span style="font-size: 0.8em; color: #ff9800;">${toFahrenheit(tVal)} °F</span><br><span style="font-weight: bold; color: #cf6679;">High Risk</span>`;
+                            tempBox.style.background = "rgba(207, 102, 121, 0.2)";
+                            tempBox.style.border = "2px solid #cf6679";
+                        } else if (tVal > 35 && tVal <= 36.5) {
+                            tempBox.querySelector('.vital-label').innerHTML = `Temperature (°C)<br><span style="font-size: 0.8em; color: #ff9800;">${toFahrenheit(tVal)} °F</span><br><span style="font-weight: bold; color: #ffb74d;">Low Risk</span>`;
+                            tempBox.style.background = "rgba(255, 183, 77, 0.1)"; // Orange tint
+                            tempBox.style.border = "2px solid #ffb74d";
+                        } else if (tVal > 36.5 && tVal < 38) {
+                            tempBox.querySelector('.vital-label').innerHTML = `Temperature (°C)<br><span style="font-size: 0.8em; color: #ff9800;">${toFahrenheit(tVal)} °F</span><br><span style="font-weight: bold; color: #03dac6;">Normal</span>`;
+                            tempBox.style.background = "rgba(255, 255, 255, 0.05)";
+                            tempBox.style.border = "none";
+                        } else if (tVal >= 38) {
+                            tempBox.querySelector('.vital-label').innerHTML = `Temperature (°C)<br><span style="font-size: 0.8em; color: #ff9800;">${toFahrenheit(tVal)} °F</span><br><span style="font-weight: bold; color: #cf6679;">High Risk</span>`;
+                            tempBox.style.background = "rgba(207, 102, 121, 0.2)";
+                            tempBox.style.border = "2px solid #cf6679";
+                        }
+                    } else {
+                        tempEl.innerText = "--";
+                        tempBox.querySelector('.vital-label').innerHTML = `Temperature (°C)<br><span style="font-size: 0.8em; color: #ff9800;">-- °F</span>`;
+                        tempBox.style.background = "rgba(255, 255, 255, 0.05)";
+                        tempBox.style.border = "none";
+                    }
+
+                    const coughVal = data.Coughs || data.Cough;
+                    const coughEl = document.getElementById('cough');
+                    const coughBox = coughEl.parentElement;
+
+                    // Show Status Text if available, else count
+                    if (data.CoughStatus === "DETECTED") {
+                        coughEl.innerText = "Cough Detected";
+                        coughBox.style.background = "rgba(207, 102, 121, 0.2)"; // Red tint
+                        coughBox.style.border = "2px solid #cf6679";
+                        coughEl.style.color = "#cf6679";
+                        // reduce font size slightly to fit if needed
+                        coughEl.style.fontSize = "1.5em";
+                    } else {
+                        coughEl.innerText = "Normal";
+                        coughBox.style.background = "rgba(255, 255, 255, 0.05)"; // Default
+                        coughBox.style.border = "none";
+                        coughEl.style.color = "var(--text-color)";
+                        coughEl.style.fontSize = "2em";
+                    }
+
+                    if (data.ai_assessment) {
+                        document.getElementById('ai-insight').innerText = data.ai_assessment;
+                    } else if (data.explanation) {
+                        document.getElementById('ai-insight').innerText = data.explanation;
+                    } else if (bpmVal <= 0 && isNaN(tVal) && !data.CoughStatus && isNaN(tVal)) {
+                        document.getElementById('ai-insight').innerText = "Sensors Disconnected (Check Hardware)";
+                    } else {
+                        document.getElementById('ai-insight').innerText = "Waiting for data...";
+                    }
+
+                    // Average BPM Logic
+                    const avgBox = document.getElementById('avg-bpm');
+                    const avgBoxParent = document.getElementById('avg-bpm-parent');
+                    if (data.Avg_Status === "Locked") {
+                        avgBox.innerHTML = `${data.Avg_BPM} <span style="font-size:0.5em; opacity:0.7; font-weight: normal;">(Locked)</span>`;
+                        avgBoxParent.style.borderColor = "#03dac6"; // Green
+                    } else if (data.Avg_Status === "Measuring") {
+                        avgBox.innerHTML = `<span style="font-size: 0.7em;">Calculating...</span> <span style="font-size:0.6em; font-weight: normal;">(${data.Avg_BPM})</span>`;
+                        avgBoxParent.style.borderColor = "#ffb74d"; // Orange
+                    } else {
+                        avgBox.innerText = "Place Finger";
+                        avgBoxParent.style.borderColor = "rgba(255, 255, 255, 0.1)";
+                    }
+
+                    // Cold Detection Logic
+                    const coldRisk = document.getElementById('cold-risk');
+                    const coldBox = document.getElementById('cold-box');
+                    const coldLabel = coldBox.querySelector('.vital-label');
+
+                    coldLabel.innerText = "Cold Status";
+
+                    if (tVal < 35 && tVal > 0) {
+                        coldRisk.innerText = "DETECTED";
+                        coldRisk.style.color = "#cf6679"; // Red
+                        coldBox.style.borderColor = "#cf6679";
+                    } else if (tVal === 0 || isNaN(tVal)) {
+                        coldRisk.innerText = "--";
+                        coldBox.style.borderColor = "transparent";
+                    } else {
+                        coldRisk.innerText = "NOT DETECTED";
+                        coldRisk.style.color = "#03dac6"; // Green
+                        coldBox.style.borderColor = "#03dac6";
+                    }
+
+                    // Timestamp
+                    if (data.Time || data.timestamp) {
+                        document.getElementById('last-updated').innerText = `Last updated: ${data.Time || data.timestamp}`;
+                    }
+
+                    currentVitals = data;
+                } catch (e) {
+                    console.error("Fetch error", e);
+                }
+            }
+            setInterval(updateVitals, 2000);
+            updateVitals();
+
+            // Chat
+            async function sendMessage() {
+                const input = document.getElementById('chat-input');
+                const history = document.getElementById('chat-history');
+                const msg = input.value.trim();
+                if (!msg) return;
+
+                // User msg
+                history.innerHTML += `<div class='msg user-msg'>${msg}</div>`;
+                input.value = '';
+                history.scrollTop = history.scrollHeight;
+
+                try {
+                    const res = await fetch('/api/chat', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ message: msg, context: currentVitals })
+                    });
+                    const data = await res.json();
+                    history.innerHTML += `<div class='msg bot-msg'>${data.reply}</div>`;
+                    history.scrollTop = history.scrollHeight;
+                } catch (e) {
+                    history.innerHTML += `<div class='msg bot-msg'>Error communicating with AI.</div>`;
+                }
+            }
+
+            // Skin Analysis
+            async function analyzeSkin() {
+                const symptoms = document.getElementById('skin-symptoms').value;
+                const fileInput = document.getElementById('skin-image');
+                const resultBox = document.getElementById('skin-result');
+                const loader = document.getElementById('skin-loader');
+
+                if (!symptoms && fileInput.files.length === 0) {
+                    alert("Please provide text or an image.");
+                    return;
+                }
+
+                const formData = new FormData();
+                formData.append('symptoms', symptoms);
+                if (fileInput.files.length > 0) {
+                    formData.append('image', fileInput.files[0]);
+                }
+
+                resultBox.innerText = "";
+                loader.style.visibility = 'visible';
+
+                try {
+                    const res = await fetch('/api/skin_analysis', {
+                        method: 'POST',
+                        body: formData
+                    });
+                    const resultData = await res.json();
+                    // Replace newlines with <br> for HTML rendering
+                    resultBox.innerHTML = resultData.result.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
+                } catch (e) {
+                    console.error(e);
+                    resultBox.innerText = "Error analyzing skin.";
+                } finally {
+                    loader.style.visibility = 'hidden';
+                }
+            }
+
+            // Load XAI Text on start
+            async function loadXaiText() {
+                try {
+                    const res = await fetch('/api/xai/explanation');
+                    const data = await res.json();
+                    document.getElementById('xai-text').innerText = data.text;
+                } catch (e) {
+                    console.log("XAI text load error", e);
+                }
+            }
+            loadXaiText();
+
+            // Vital Analysis Modal Logic
+            const modal = document.getElementById('analysis-modal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalBody = document.getElementById('modal-body');
+
+            function closeModal() {
+                modal.style.display = 'none';
+            }
+
+            // Close info modal on outside click
+            window.onclick = function (event) {
+                if (event.target == modal) {
+                    closeModal();
+                }
+            }
+
+            async function resetVitals() {
+                if (!confirm("Are you sure you want to clear all data?")) return;
+
+                try {
+                    const res = await fetch('/api/reset', { method: 'POST' });
+                    const data = await res.json();
+                    if (data.status === 'success') {
+                        // Reset UI immediately
+                        document.getElementById('bpm').innerText = "--";
+                        document.getElementById('temp').innerText = "--";
+                        document.getElementById('cough').innerText = "--";
+                        document.getElementById('ai-insight').innerText = "Data cleared.";
+                        document.getElementById('last-updated').innerText = "Last updated: Never";
+                    } else {
+                        alert("Error resetting: " + data.message);
+                    }
+                } catch (e) {
+                    console.error(e);
+                    alert("Error connecting to server.");
+                }
+            }
+
+            async function analyzeVital(name, elementId) {
+                const valueElement = document.getElementById(elementId);
+                const value = valueElement.innerText;
+
+                if (value === "--" || value.includes("Place Finger") || value.includes("Calculating")) {
+                    alert("Please wait for a valid measurement (Locked) before analyzing.");
+                    return;
+                }
+
+                modal.style.display = 'flex';
+                modalTitle.innerText = `Analyzing ${name}...`;
+                modalBody.innerText = "Consulting AI Doctor...";
+
+                try {
+                    const res = await fetch('/api/analyze_vital', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ vital: name, value: value })
+                    });
+                    const data = await res.json();
+
+                    if (data.analysis) {
+                        modalTitle.innerText = `${name} Analysis`;
+                        modalBody.innerText = data.analysis;
+                    } else {
+                        modalBody.innerText = "Error: " + (data.error || "Could not retrieve analysis.");
+                    }
+                } catch (e) {
+                    console.error(e);
+                    modalBody.innerText = "Error connecting to server.";
+                }
+            }
+        </script>
+</body>
+
+</html>

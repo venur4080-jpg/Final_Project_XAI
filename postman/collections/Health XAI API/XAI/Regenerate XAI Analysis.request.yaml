@@ -1,0 +1,23 @@
+$kind: http-request
+name: Regenerate XAI Analysis
+method: POST
+url: '{{baseUrl}}/api/xai/regenerate'
+order: 6000
+description: 'Triggers regeneration of XAI analysis (LIME/SHAP). Returns { "status": "success", "message": "XAI Analysis Regenerated" }.'
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test("Status code is 200 or 500", function () {
+          pm.expect([200, 500]).to.include(pm.response.code);
+      });
+      pm.test("Response is JSON", function () {
+          pm.response.to.be.json;
+      });
+      pm.test("Response time is less than 15000ms", function () {
+          pm.expect(pm.response.responseTime).to.be.below(15000);
+      });
+      const json = pm.response.json();
+      pm.test("Response has a 'status' field", function () {
+          pm.expect(json).to.have.property("status");
+      });

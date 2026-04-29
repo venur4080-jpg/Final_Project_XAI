@@ -1,0 +1,1145 @@
+﻿[dotenv@17.2.3] injecting env (2) from .env -- tip: ≡ƒöÉ prevent building .env in docker: https://dotenvx.com/prebuild
+Server running on port 5000
+-----------------------------------------
+≡ƒ⌐║ Live Vitals Monitoring Started
+-----------------------------------------
+
+[5:23:28 pm] ≡ƒôè NEW DATA RECEIVED
+Vitals: HR 94 bpm | SpO2 96% | Temp 37.0┬░C
+Risk Level: LOW
+node : ΓÜá∩╕Å GEMINI 
+API FAILED, USING 
+SIMULATED 
+EXPLANATION: 
+[GoogleGenerativeAI 
+Error]: Error 
+fetching from https:/
+/generativelanguage.g
+oogleapis.com/v1beta/
+models/gemini-2.0-fla
+sh:generateContent: 
+[429 Too Many 
+Requests] You 
+exceeded your 
+current quota, 
+please check your 
+plan and billing 
+details. For more 
+information on this 
+error, head to: https
+://ai.google.dev/gemi
+ni-api/docs/rate-limi
+ts. To monitor your 
+current usage, head 
+to: https://ai.dev/us
+age?tab=rate-limit. 
+At line:1 char:1
++ node src/server.js 
+*>&1 | Out-File 
+-FilePath server_veri
+fication.txt  ...
++ ~~~~~~~~~~~~~~~~~~~
+~~~~
+    + CategoryInfo   
+           : NotSpe  
+  cified: (ΓÜá∩╕Å    
+ GEMINI A...ab=ra    
+te-limit. :Strin    
+g) [], RemoteExc    
+eption
+    + FullyQualified 
+   ErrorId : Native  
+  CommandError
+ 
+* Quota exceeded for 
+metric: generativelan
+guage.googleapis.com/
+generate_content_free
+_tier_input_token_cou
+nt, limit: 0, model: 
+gemini-2.0-flash
+* Quota exceeded for 
+metric: generativelan
+guage.googleapis.com/
+generate_content_free
+_tier_requests, 
+limit: 0, model: 
+gemini-2.0-flash
+* Quota exceeded for 
+metric: generativelan
+guage.googleapis.com/
+generate_content_free
+_tier_requests, 
+limit: 0, model: 
+gemini-2.0-flash
+Please retry in 
+30.561887359s. [{"@ty
+pe":"type.googleapis.
+com/google.rpc.Help",
+"links":[{"descriptio
+n":"Learn more about 
+Gemini API quotas","u
+rl":"https://ai.googl
+e.dev/gemini-api/docs
+/rate-limits"}]},{"@t
+ype":"type.googleapis
+.com/google.rpc.Quota
+Failure","violations"
+:[{"quotaMetric":"gen
+erativelanguage.googl
+eapis.com/generate_co
+ntent_free_tier_input
+_token_count","quotaI
+d":"GenerateContentIn
+putTokensPerModelPerM
+inute-FreeTier","quot
+aDimensions":{"locati
+on":"global","model":
+"gemini-2.0-flash"}},
+{"quotaMetric":"gener
+ativelanguage.googlea
+pis.com/generate_cont
+ent_free_tier_request
+s","quotaId":"Generat
+eRequestsPerMinutePer
+ProjectPerModel-FreeT
+ier","quotaDimensions
+":{"location":"global
+","model":"gemini-2.0
+-flash"}},{"quotaMetr
+ic":"generativelangua
+ge.googleapis.com/gen
+erate_content_free_ti
+er_requests","quotaId
+":"GenerateRequestsPe
+rDayPerProjectPerMode
+l-FreeTier","quotaDim
+ensions":{"location":
+"global","model":"gem
+ini-2.0-flash"}}]},{"
+@type":"type.googleap
+is.com/google.rpc.Ret
+ryInfo","retryDelay":
+"30s"}]
+≡ƒö« AI EXPLANATION: The patient's vitals are currently within stable ranges. Continue routine monitoring.
+-----------------------------------------
+
+[5:23:43 pm] ≡ƒôè NEW DATA RECEIVED
+Vitals: HR 66 bpm | SpO2 95% | Temp 37.0┬░C
+Risk Level: LOW
+ΓÜá∩╕Å GEMINI API 
+FAILED, USING 
+SIMULATED 
+EXPLANATION: 
+[GoogleGenerativeAI 
+Error]: Error 
+fetching from https:/
+/generativelanguage.g
+oogleapis.com/v1beta/
+models/gemini-2.0-fla
+sh:generateContent: 
+[429 Too Many 
+Requests] You 
+exceeded your 
+current quota, 
+please check your 
+plan and billing 
+details. For more 
+information on this 
+error, head to: https
+://ai.google.dev/gemi
+ni-api/docs/rate-limi
+ts. To monitor your 
+current usage, head 
+to: https://ai.dev/us
+age?tab=rate-limit. 
+* Quota exceeded for 
+metric: generativelan
+guage.googleapis.com/
+generate_content_free
+_tier_input_token_cou
+nt, limit: 0, model: 
+gemini-2.0-flash
+* Quota exceeded for 
+metric: generativelan
+guage.googleapis.com/
+generate_content_free
+_tier_requests, 
+limit: 0, model: 
+gemini-2.0-flash
+* Quota exceeded for 
+metric: generativelan
+guage.googleapis.com/
+generate_content_free
+_tier_requests, 
+limit: 0, model: 
+gemini-2.0-flash
+Please retry in 
+15.71293311s. [{"@typ
+e":"type.googleapis.c
+om/google.rpc.Help","
+links":[{"description
+":"Learn more about 
+Gemini API quotas","u
+rl":"https://ai.googl
+e.dev/gemini-api/docs
+/rate-limits"}]},{"@t
+ype":"type.googleapis
+.com/google.rpc.Quota
+Failure","violations"
+:[{"quotaMetric":"gen
+erativelanguage.googl
+eapis.com/generate_co
+ntent_free_tier_input
+_token_count","quotaI
+d":"GenerateContentIn
+putTokensPerModelPerM
+inute-FreeTier","quot
+aDimensions":{"model"
+:"gemini-2.0-flash","
+location":"global"}},
+{"quotaMetric":"gener
+ativelanguage.googlea
+pis.com/generate_cont
+ent_free_tier_request
+s","quotaId":"Generat
+eRequestsPerMinutePer
+ProjectPerModel-FreeT
+ier","quotaDimensions
+":{"location":"global
+","model":"gemini-2.0
+-flash"}},{"quotaMetr
+ic":"generativelangua
+ge.googleapis.com/gen
+erate_content_free_ti
+er_requests","quotaId
+":"GenerateRequestsPe
+rDayPerProjectPerMode
+l-FreeTier","quotaDim
+ensions":{"location":
+"global","model":"gem
+ini-2.0-flash"}}]},{"
+@type":"type.googleap
+is.com/google.rpc.Ret
+ryInfo","retryDelay":
+"15s"}]
+≡ƒö« AI EXPLANATION: The patient's vitals are currently within stable ranges. Continue routine monitoring.
+-----------------------------------------
+
+[5:23:58 pm] ≡ƒôè NEW DATA RECEIVED
+Vitals: HR 60 bpm | SpO2 97% | Temp 37.3┬░C
+Risk Level: LOW
+ΓÜá∩╕Å GEMINI API 
+FAILED, USING 
+SIMULATED 
+EXPLANATION: 
+[GoogleGenerativeAI 
+Error]: Error 
+fetching from https:/
+/generativelanguage.g
+oogleapis.com/v1beta/
+models/gemini-2.0-fla
+sh:generateContent: 
+[429 Too Many 
+Requests] You 
+exceeded your 
+current quota, 
+please check your 
+plan and billing 
+details. For more 
+information on this 
+error, head to: https
+://ai.google.dev/gemi
+ni-api/docs/rate-limi
+ts. To monitor your 
+current usage, head 
+to: https://ai.dev/us
+age?tab=rate-limit. 
+* Quota exceeded for 
+metric: generativelan
+guage.googleapis.com/
+generate_content_free
+_tier_input_token_cou
+nt, limit: 0, model: 
+gemini-2.0-flash
+* Quota exceeded for 
+metric: generativelan
+guage.googleapis.com/
+generate_content_free
+_tier_requests, 
+limit: 0, model: 
+gemini-2.0-flash
+* Quota exceeded for 
+metric: generativelan
+guage.googleapis.com/
+generate_content_free
+_tier_requests, 
+limit: 0, model: 
+gemini-2.0-flash
+Please retry in 
+711.980446ms. [{"@typ
+e":"type.googleapis.c
+om/google.rpc.Help","
+links":[{"description
+":"Learn more about 
+Gemini API quotas","u
+rl":"https://ai.googl
+e.dev/gemini-api/docs
+/rate-limits"}]},{"@t
+ype":"type.googleapis
+.com/google.rpc.Quota
+Failure","violations"
+:[{"quotaMetric":"gen
+erativelanguage.googl
+eapis.com/generate_co
+ntent_free_tier_input
+_token_count","quotaI
+d":"GenerateContentIn
+putTokensPerModelPerM
+inute-FreeTier","quot
+aDimensions":{"locati
+on":"global","model":
+"gemini-2.0-flash"}},
+{"quotaMetric":"gener
+ativelanguage.googlea
+pis.com/generate_cont
+ent_free_tier_request
+s","quotaId":"Generat
+eRequestsPerMinutePer
+ProjectPerModel-FreeT
+ier","quotaDimensions
+":{"model":"gemini-2.
+0-flash","location":"
+global"}},{"quotaMetr
+ic":"generativelangua
+ge.googleapis.com/gen
+erate_content_free_ti
+er_requests","quotaId
+":"GenerateRequestsPe
+rDayPerProjectPerMode
+l-FreeTier","quotaDim
+ensions":{"model":"ge
+mini-2.0-flash","loca
+tion":"global"}}]},{"
+@type":"type.googleap
+is.com/google.rpc.Ret
+ryInfo","retryDelay":
+"0s"}]
+≡ƒö« AI EXPLANATION: The patient's vitals are currently within stable ranges. Continue routine monitoring.
+-----------------------------------------
+
+[5:24:13 pm] ≡ƒôè NEW DATA RECEIVED
+Vitals: HR 123 bpm | SpO2 94% | Temp 37.4┬░C
+Risk Level: MODERATE
+ΓÜá∩╕Å GEMINI API 
+FAILED, USING 
+SIMULATED 
+EXPLANATION: 
+[GoogleGenerativeAI 
+Error]: Error 
+fetching from https:/
+/generativelanguage.g
+oogleapis.com/v1beta/
+models/gemini-2.0-fla
+sh:generateContent: 
+[429 Too Many 
+Requests] You 
+exceeded your 
+current quota, 
+please check your 
+plan and billing 
+details. For more 
+information on this 
+error, head to: https
+://ai.google.dev/gemi
+ni-api/docs/rate-limi
+ts. To monitor your 
+current usage, head 
+to: https://ai.dev/us
+age?tab=rate-limit. 
+* Quota exceeded for 
+metric: generativelan
+guage.googleapis.com/
+generate_content_free
+_tier_input_token_cou
+nt, limit: 0, model: 
+gemini-2.0-flash
+* Quota exceeded for 
+metric: generativelan
+guage.googleapis.com/
+generate_content_free
+_tier_requests, 
+limit: 0, model: 
+gemini-2.0-flash
+* Quota exceeded for 
+metric: generativelan
+guage.googleapis.com/
+generate_content_free
+_tier_requests, 
+limit: 0, model: 
+gemini-2.0-flash
+Please retry in 
+45.698422408s. [{"@ty
+pe":"type.googleapis.
+com/google.rpc.Help",
+"links":[{"descriptio
+n":"Learn more about 
+Gemini API quotas","u
+rl":"https://ai.googl
+e.dev/gemini-api/docs
+/rate-limits"}]},{"@t
+ype":"type.googleapis
+.com/google.rpc.Quota
+Failure","violations"
+:[{"quotaMetric":"gen
+erativelanguage.googl
+eapis.com/generate_co
+ntent_free_tier_input
+_token_count","quotaI
+d":"GenerateContentIn
+putTokensPerModelPerM
+inute-FreeTier","quot
+aDimensions":{"locati
+on":"global","model":
+"gemini-2.0-flash"}},
+{"quotaMetric":"gener
+ativelanguage.googlea
+pis.com/generate_cont
+ent_free_tier_request
+s","quotaId":"Generat
+eRequestsPerMinutePer
+ProjectPerModel-FreeT
+ier","quotaDimensions
+":{"location":"global
+","model":"gemini-2.0
+-flash"}},{"quotaMetr
+ic":"generativelangua
+ge.googleapis.com/gen
+erate_content_free_ti
+er_requests","quotaId
+":"GenerateRequestsPe
+rDayPerProjectPerMode
+l-FreeTier","quotaDim
+ensions":{"location":
+"global","model":"gem
+ini-2.0-flash"}}]},{"
+@type":"type.googleap
+is.com/google.rpc.Ret
+ryInfo","retryDelay":
+"45s"}]
+≡ƒö« AI EXPLANATION: The patient's vitals show some abnormalities: Heart rate above normal range. While not critical yet, close monitoring is required to prevent further deterioration.
+-----------------------------------------
+
+[5:24:28 pm] ≡ƒôè NEW DATA RECEIVED
+Vitals: HR 75 bpm | SpO2 98% | Temp 36.8┬░C
+Risk Level: LOW
+ΓÜá∩╕Å GEMINI API 
+FAILED, USING 
+SIMULATED 
+EXPLANATION: 
+[GoogleGenerativeAI 
+Error]: Error 
+fetching from https:/
+/generativelanguage.g
+oogleapis.com/v1beta/
+models/gemini-2.0-fla
+sh:generateContent: 
+[429 Too Many 
+Requests] You 
+exceeded your 
+current quota, 
+please check your 
+plan and billing 
+details. For more 
+information on this 
+error, head to: https
+://ai.google.dev/gemi
+ni-api/docs/rate-limi
+ts. To monitor your 
+current usage, head 
+to: https://ai.dev/us
+age?tab=rate-limit. 
+* Quota exceeded for 
+metric: generativelan
+guage.googleapis.com/
+generate_content_free
+_tier_requests, 
+limit: 0, model: 
+gemini-2.0-flash
+* Quota exceeded for 
+metric: generativelan
+guage.googleapis.com/
+generate_content_free
+_tier_requests, 
+limit: 0, model: 
+gemini-2.0-flash
+≡ƒö« AI EXPLANATION: The patient's vitals are currently within stable ranges. Continue routine monitoring.
+-----------------------------------------
+* Quota exceeded for 
+metric: generativelan
+guage.googleapis.com/
+generate_content_free
+_tier_input_token_cou
+nt, limit: 0, model: 
+gemini-2.0-flash
+Please retry in 
+30.846137827s. [{"@ty
+pe":"type.googleapis.
+com/google.rpc.Help",
+"links":[{"descriptio
+n":"Learn more about 
+Gemini API quotas","u
+rl":"https://ai.googl
+e.dev/gemini-api/docs
+/rate-limits"}]},{"@t
+ype":"type.googleapis
+.com/google.rpc.Quota
+Failure","violations"
+:[{"quotaMetric":"gen
+erativelanguage.googl
+eapis.com/generate_co
+ntent_free_tier_reque
+sts","quotaId":"Gener
+ateRequestsPerDayPerP
+rojectPerModel-FreeTi
+er","quotaDimensions"
+:{"location":"global"
+,"model":"gemini-2.0-
+flash"}},{"quotaMetri
+c":"generativelanguag
+e.googleapis.com/gene
+rate_content_free_tie
+r_requests","quotaId"
+:"GenerateRequestsPer
+MinutePerProjectPerMo
+del-FreeTier","quotaD
+imensions":{"location
+":"global","model":"g
+emini-2.0-flash"}},{"
+quotaMetric":"generat
+ivelanguage.googleapi
+s.com/generate_conten
+t_free_tier_input_tok
+en_count","quotaId":"
+GenerateContentInputT
+okensPerModelPerMinut
+e-FreeTier","quotaDim
+ensions":{"model":"ge
+mini-2.0-flash","loca
+tion":"global"}}]},{"
+@type":"type.googleap
+is.com/google.rpc.Ret
+ryInfo","retryDelay":
+"30s"}]
+
+[5:24:43 pm] ≡ƒôè NEW DATA RECEIVED
+Vitals: HR 125 bpm | SpO2 92% | Temp 38.6┬░C
+Risk Level: HIGH
+ΓÜá∩╕Å GEMINI API 
+FAILED, USING 
+SIMULATED 
+EXPLANATION: 
+[GoogleGenerativeAI 
+Error]: Error 
+fetching from https:/
+/generativelanguage.g
+oogleapis.com/v1beta/
+models/gemini-2.0-fla
+sh:generateContent: 
+[429 Too Many 
+Requests] You 
+exceeded your 
+current quota, 
+please check your 
+plan and billing 
+details. For more 
+information on this 
+error, head to: https
+://ai.google.dev/gemi
+ni-api/docs/rate-limi
+ts. To monitor your 
+current usage, head 
+to: https://ai.dev/us
+age?tab=rate-limit. 
+* Quota exceeded for 
+metric: generativelan
+guage.googleapis.com/
+generate_content_free
+_tier_input_token_cou
+nt, limit: 0, model: 
+gemini-2.0-flash
+* Quota exceeded for 
+metric: generativelan
+guage.googleapis.com/
+generate_content_free
+_tier_requests, 
+limit: 0, model: 
+gemini-2.0-flash
+* Quota exceeded for 
+metric: generativelan
+guage.googleapis.com/
+generate_content_free
+_tier_requests, 
+limit: 0, model: 
+gemini-2.0-flash
+Please retry in 
+15.6505458s. [{"@type
+":"type.googleapis.co
+m/google.rpc.Help","l
+inks":[{"description"
+:"Learn more about 
+Gemini API quotas","u
+rl":"https://ai.googl
+e.dev/gemini-api/docs
+/rate-limits"}]},{"@t
+ype":"type.googleapis
+.com/google.rpc.Quota
+Failure","violations"
+:[{"quotaMetric":"gen
+erativelanguage.googl
+eapis.com/generate_co
+ntent_free_tier_input
+_token_count","quotaI
+d":"GenerateContentIn
+putTokensPerModelPerM
+inute-FreeTier","quot
+aDimensions":{"locati
+on":"global","model":
+"gemini-2.0-flash"}},
+{"quotaMetric":"gener
+ativelanguage.googlea
+pis.com/generate_cont
+ent_free_tier_request
+s","quotaId":"Generat
+eRequestsPerMinutePer
+ProjectPerModel-FreeT
+ier","quotaDimensions
+":{"location":"global
+","model":"gemini-2.0
+-flash"}},{"quotaMetr
+ic":"generativelangua
+ge.googleapis.com/gen
+erate_content_free_ti
+er_requests","quotaId
+":"GenerateRequestsPe
+rDayPerProjectPerMode
+l-FreeTier","quotaDim
+ensions":{"location":
+"global","model":"gem
+ini-2.0-flash"}}]},{"
+@type":"type.googleap
+is.com/google.rpc.Ret
+ryInfo","retryDelay":
+"15s"}]
+≡ƒö« AI EXPLANATION: The patient's current vitals (Heart Rate: 125, SpO2: 92) indicate a high risk level. This is primarily due to Heart rate above normal range and Low oxygen saturation detected and Elevated body temperature. Immediate medical intervention is advised to stabilize the patient's condition.
+-----------------------------------------
+
+[5:24:58 pm] ≡ƒôè NEW DATA RECEIVED
+Vitals: HR 122 bpm | SpO2 96% | Temp 38.0┬░C
+Risk Level: HIGH
+ΓÜá∩╕Å GEMINI API 
+FAILED, USING 
+SIMULATED 
+EXPLANATION: 
+[GoogleGenerativeAI 
+Error]: Error 
+fetching from https:/
+/generativelanguage.g
+oogleapis.com/v1beta/
+models/gemini-2.0-fla
+sh:generateContent: 
+[429 Too Many 
+Requests] You 
+exceeded your 
+current quota, 
+please check your 
+plan and billing 
+details. For more 
+information on this 
+error, head to: https
+://ai.google.dev/gemi
+ni-api/docs/rate-limi
+ts. To monitor your 
+current usage, head 
+to: https://ai.dev/us
+age?tab=rate-limit. 
+* Quota exceeded for 
+metric: generativelan
+guage.googleapis.com/
+generate_content_free
+_tier_input_token_cou
+nt, limit: 0, model: 
+gemini-2.0-flash
+* Quota exceeded for 
+metric: generativelan
+guage.googleapis.com/
+generate_content_free
+_tier_requests, 
+limit: 0, model: 
+gemini-2.0-flash
+* Quota exceeded for 
+metric: generativelan
+guage.googleapis.com/
+generate_content_free
+_tier_requests, 
+limit: 0, model: 
+gemini-2.0-flash
+Please retry in 
+653.343907ms. [{"@typ
+e":"type.googleapis.c
+om/google.rpc.Help","
+links":[{"description
+":"Learn more about 
+Gemini API quotas","u
+rl":"https://ai.googl
+e.dev/gemini-api/docs
+/rate-limits"}]},{"@t
+ype":"type.googleapis
+.com/google.rpc.Quota
+Failure","violations"
+:[{"quotaMetric":"gen
+erativelanguage.googl
+eapis.com/generate_co
+ntent_free_tier_input
+_token_count","quotaI
+d":"GenerateContentIn
+putTokensPerModelPerM
+inute-FreeTier","quot
+aDimensions":{"model"
+:"gemini-2.0-flash","
+location":"global"}},
+{"quotaMetric":"gener
+ativelanguage.googlea
+pis.com/generate_cont
+ent_free_tier_request
+s","quotaId":"Generat
+eRequestsPerMinutePer
+ProjectPerModel-FreeT
+ier","quotaDimensions
+":{"location":"global
+","model":"gemini-2.0
+-flash"}},{"quotaMetr
+ic":"generativelangua
+ge.googleapis.com/gen
+erate_content_free_ti
+er_requests","quotaId
+":"GenerateRequestsPe
+rDayPerProjectPerMode
+l-FreeTier","quotaDim
+ensions":{"location":
+"global","model":"gem
+ini-2.0-flash"}}]},{"
+@type":"type.googleap
+is.com/google.rpc.Ret
+ryInfo","retryDelay":
+"0s"}]
+≡ƒö« AI EXPLANATION: The patient's current vitals (Heart Rate: 122, SpO2: 96) indicate a high risk level. This is primarily due to Heart rate above normal range and Elevated body temperature. Immediate medical intervention is advised to stabilize the patient's condition.
+-----------------------------------------
+
+[5:25:13 pm] ≡ƒôè NEW DATA RECEIVED
+Vitals: HR 60 bpm | SpO2 95% | Temp 36.8┬░C
+Risk Level: LOW
+ΓÜá∩╕Å GEMINI API 
+FAILED, USING 
+SIMULATED 
+EXPLANATION: 
+[GoogleGenerativeAI 
+Error]: Error 
+fetching from https:/
+/generativelanguage.g
+oogleapis.com/v1beta/
+models/gemini-2.0-fla
+sh:generateContent: 
+[429 Too Many 
+Requests] You 
+exceeded your 
+current quota, 
+please check your 
+plan and billing 
+details. For more 
+information on this 
+error, head to: https
+://ai.google.dev/gemi
+ni-api/docs/rate-limi
+ts. To monitor your 
+current usage, head 
+to: https://ai.dev/us
+age?tab=rate-limit. 
+* Quota exceeded for 
+metric: generativelan
+guage.googleapis.com/
+generate_content_free
+_tier_input_token_cou
+nt, limit: 0, model: 
+gemini-2.0-flash
+* Quota exceeded for 
+metric: generativelan
+guage.googleapis.com/
+generate_content_free
+_tier_requests, 
+limit: 0, model: 
+gemini-2.0-flash
+* Quota exceeded for 
+metric: generativelan
+guage.googleapis.com/
+generate_content_free
+_tier_requests, 
+limit: 0, model: 
+gemini-2.0-flash
+Please retry in 
+45.635473325s. [{"@ty
+pe":"type.googleapis.
+com/google.rpc.Help",
+"links":[{"descriptio
+n":"Learn more about 
+Gemini API quotas","u
+rl":"https://ai.googl
+e.dev/gemini-api/docs
+/rate-limits"}]},{"@t
+ype":"type.googleapis
+.com/google.rpc.Quota
+Failure","violations"
+:[{"quotaMetric":"gen
+erativelanguage.googl
+eapis.com/generate_co
+ntent_free_tier_input
+_token_count","quotaI
+d":"GenerateContentIn
+putTokensPerModelPerM
+inute-FreeTier","quot
+aDimensions":{"locati
+on":"global","model":
+"gemini-2.0-flash"}},
+{"quotaMetric":"gener
+ativelanguage.googlea
+pis.com/generate_cont
+ent_free_tier_request
+s","quotaId":"Generat
+eRequestsPerMinutePer
+ProjectPerModel-FreeT
+ier","quotaDimensions
+":{"location":"global
+","model":"gemini-2.0
+-flash"}},{"quotaMetr
+ic":"generativelangua
+ge.googleapis.com/gen
+erate_content_free_ti
+er_requests","quotaId
+":"GenerateRequestsPe
+rDayPerProjectPerMode
+l-FreeTier","quotaDim
+ensions":{"location":
+"global","model":"gem
+ini-2.0-flash"}}]},{"
+@type":"type.googleap
+is.com/google.rpc.Ret
+ryInfo","retryDelay":
+"45s"}]
+≡ƒö« AI EXPLANATION: The patient's vitals are currently within stable ranges. Continue routine monitoring.
+-----------------------------------------
+
+[5:25:28 pm] ≡ƒôè NEW DATA RECEIVED
+Vitals: HR 128 bpm | SpO2 94% | Temp 36.7┬░C
+Risk Level: MODERATE
+ΓÜá∩╕Å GEMINI API 
+FAILED, USING 
+SIMULATED 
+EXPLANATION: 
+[GoogleGenerativeAI 
+Error]: Error 
+fetching from https:/
+/generativelanguage.g
+oogleapis.com/v1beta/
+models/gemini-2.0-fla
+sh:generateContent: 
+[429 Too Many 
+Requests] You 
+exceeded your 
+current quota, 
+please check your 
+plan and billing 
+details. For more 
+information on this 
+error, head to: https
+://ai.google.dev/gemi
+ni-api/docs/rate-limi
+ts. To monitor your 
+current usage, head 
+to: https://ai.dev/us
+age?tab=rate-limit. 
+* Quota exceeded for 
+metric: generativelan
+guage.googleapis.com/
+generate_content_free
+_tier_requests, 
+limit: 0, model: 
+gemini-2.0-flash
+* Quota exceeded for 
+metric: generativelan
+guage.googleapis.com/
+generate_content_free
+_tier_requests, 
+limit: 0, model: 
+gemini-2.0-flash
+* Quota exceeded for 
+metric: generativelan
+guage.googleapis.com/
+generate_content_free
+_tier_input_token_cou
+nt, limit: 0, model: 
+gemini-2.0-flash
+Please retry in 
+30.606151829s. [{"@ty
+pe":"type.googleapis.
+com/google.rpc.Help",
+"links":[{"descriptio
+n":"Learn more about 
+Gemini API quotas","u
+rl":"https://ai.googl
+e.dev/gemini-api/docs
+/rate-limits"}]},{"@t
+ype":"type.googleapis
+.com/google.rpc.Quota
+Failure","violations"
+:[{"quotaMetric":"gen
+erativelanguage.googl
+eapis.com/generate_co
+ntent_free_tier_reque
+sts","quotaId":"Gener
+ateRequestsPerDayPerP
+rojectPerModel-FreeTi
+er","quotaDimensions"
+:{"location":"global"
+,"model":"gemini-2.0-
+flash"}},{"quotaMetri
+c":"generativelanguag
+e.googleapis.com/gene
+rate_content_free_tie
+r_requests","quotaId"
+:"GenerateRequestsPer
+MinutePerProjectPerMo
+del-FreeTier","quotaD
+imensions":{"location
+":"global","model":"g
+emini-2.0-flash"}},{"
+quotaMetric":"generat
+ivelanguage.googleapi
+s.com/generate_conten
+t_free_tier_input_tok
+en_count","quotaId":"
+GenerateContentInputT
+okensPerModelPerMinut
+e-FreeTier","quotaDim
+ensions":{"model":"ge
+mini-2.0-flash","loca
+tion":"global"}}]},{"
+@type":"type.googleap
+is.com/google.rpc.Ret
+ryInfo","retryDelay":
+"30s"}]
+≡ƒö« AI EXPLANATION: The patient's vitals show some abnormalities: Heart rate above normal range. While not critical yet, close monitoring is required to prevent further deterioration.
+-----------------------------------------
+
+[5:25:43 pm] ≡ƒôè NEW DATA RECEIVED
+Vitals: HR 80 bpm | SpO2 93% | Temp 38.0┬░C
+Risk Level: HIGH
+ΓÜá∩╕Å GEMINI API 
+FAILED, USING 
+SIMULATED 
+EXPLANATION: 
+[GoogleGenerativeAI 
+Error]: Error 
+fetching from https:/
+/generativelanguage.g
+oogleapis.com/v1beta/
+models/gemini-2.0-fla
+sh:generateContent: 
+[429 Too Many 
+Requests] You 
+exceeded your 
+current quota, 
+please check your 
+plan and billing 
+details. For more 
+information on this 
+error, head to: https
+://ai.google.dev/gemi
+ni-api/docs/rate-limi
+ts. To monitor your 
+current usage, head 
+to: https://ai.dev/us
+age?tab=rate-limit. 
+* Quota exceeded for 
+metric: generativelan
+guage.googleapis.com/
+generate_content_free
+_tier_input_token_cou
+nt, limit: 0, model: 
+gemini-2.0-flash
+* Quota exceeded for 
+metric: generativelan
+guage.googleapis.com/
+generate_content_free
+_tier_requests, 
+limit: 0, model: 
+gemini-2.0-flash
+* Quota exceeded for 
+metric: generativelan
+guage.googleapis.com/
+generate_content_free
+_tier_requests, 
+limit: 0, model: 
+gemini-2.0-flash
+Please retry in 
+15.620946208s. [{"@ty
+pe":"type.googleapis.
+com/google.rpc.Help",
+"links":[{"descriptio
+n":"Learn more about 
+Gemini API quotas","u
+rl":"https://ai.googl
+e.dev/gemini-api/docs
+/rate-limits"}]},{"@t
+ype":"type.googleapis
+.com/google.rpc.Quota
+Failure","violations"
+:[{"quotaMetric":"gen
+erativelanguage.googl
+eapis.com/generate_co
+ntent_free_tier_input
+_token_count","quotaI
+d":"GenerateContentIn
+putTokensPerModelPerM
+inute-FreeTier","quot
+aDimensions":{"locati
+on":"global","model":
+"gemini-2.0-flash"}},
+{"quotaMetric":"gener
+ativelanguage.googlea
+pis.com/generate_cont
+ent_free_tier_request
+s","quotaId":"Generat
+eRequestsPerMinutePer
+ProjectPerModel-FreeT
+ier","quotaDimensions
+":{"location":"global
+","model":"gemini-2.0
+-flash"}},{"quotaMetr
+ic":"generativelangua
+ge.googleapis.com/gen
+erate_content_free_ti
+er_requests","quotaId
+":"GenerateRequestsPe
+rDayPerProjectPerMode
+l-FreeTier","quotaDim
+ensions":{"location":
+"global","model":"gem
+ini-2.0-flash"}}]},{"
+@type":"type.googleap
+is.com/google.rpc.Ret
+ryInfo","retryDelay":
+"15s"}]
+≡ƒö« AI EXPLANATION: The patient's current vitals (Heart Rate: 80, SpO2: 93) indicate a high risk level. This is primarily due to Low oxygen saturation detected and Elevated body temperature. Immediate medical intervention is advised to stabilize the patient's condition.
+-----------------------------------------
+
+[5:25:58 pm] ≡ƒôè NEW DATA RECEIVED
+Vitals: HR 89 bpm | SpO2 96% | Temp 38.8┬░C
+Risk Level: MODERATE
+ΓÜá∩╕Å GEMINI API 
+FAILED, USING 
+SIMULATED 
+EXPLANATION: 
+[GoogleGenerativeAI 
+Error]: Error 
+fetching from https:/
+/generativelanguage.g
+oogleapis.com/v1beta/
+models/gemini-2.0-fla
+sh:generateContent: 
+[429 Too Many 
+Requests] You 
+exceeded your 
+current quota, 
+please check your 
+plan and billing 
+details. For more 
+information on this 
+error, head to: https
+://ai.google.dev/gemi
+ni-api/docs/rate-limi
+ts. To monitor your 
+current usage, head 
+to: https://ai.dev/us
+age?tab=rate-limit. 
+* Quota exceeded for 
+metric: generativelan
+guage.googleapis.com/
+generate_content_free
+_tier_input_token_cou
+nt, limit: 0, model: 
+gemini-2.0-flash
+* Quota exceeded for 
+metric: generativelan
+guage.googleapis.com/
+generate_content_free
+_tier_requests, 
+limit: 0, model: 
+gemini-2.0-flash
+* Quota exceeded for 
+metric: generativelan
+guage.googleapis.com/
+generate_content_free
+_tier_requests, 
+limit: 0, model: 
+gemini-2.0-flash
+Please retry in 
+785.752913ms. [{"@typ
+e":"type.googleapis.c
+om/google.rpc.Help","
+links":[{"description
+":"Learn more about 
+Gemini API quotas","u
+rl":"https://ai.googl
+e.dev/gemini-api/docs
+/rate-limits"}]},{"@t
+ype":"type.googleapis
+.com/google.rpc.Quota
+Failure","violations"
+:[{"quotaMetric":"gen
+erativelanguage.googl
+eapis.com/generate_co
+ntent_free_tier_input
+_token_count","quotaI
+d":"GenerateContentIn
+putTokensPerModelPerM
+inute-FreeTier","quot
+aDimensions":{"locati
+on":"global","model":
+"gemini-2.0-flash"}},
+{"quotaMetric":"gener
+ativelanguage.googlea
+pis.com/generate_cont
+ent_free_tier_request
+s","quotaId":"Generat
+eRequestsPerMinutePer
+ProjectPerModel-FreeT
+ier","quotaDimensions
+":{"location":"global
+","model":"gemini-2.0
+-flash"}},{"quotaMetr
+ic":"generativelangua
+ge.googleapis.com/gen
+erate_content_free_ti
+er_requests","quotaId
+":"GenerateRequestsPe
+rDayPerProjectPerMode
+l-FreeTier","quotaDim
+ensions":{"model":"ge
+mini-2.0-flash","loca
+tion":"global"}}]},{"
+@type":"type.googleap
+is.com/google.rpc.Ret
+ryInfo","retryDelay":
+"0s"}]
+≡ƒö« AI EXPLANATION: The patient's vitals show some abnormalities: Elevated body temperature. While not critical yet, close monitoring is required to prevent further deterioration.
+-----------------------------------------

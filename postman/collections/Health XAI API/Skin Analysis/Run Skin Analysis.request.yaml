@@ -1,0 +1,38 @@
+$kind: http-request
+name: Run Skin Analysis
+method: POST
+url: '{{baseUrl}}/api/skin_analysis'
+order: 1000
+description: Analyze skin condition using an image and/or symptoms text. Accepts multipart/form-data.
+body:
+  type: formdata
+  content:
+    - key: symptoms
+      type: text
+      value: 'Red patches, itching'
+      description: Text description of symptoms
+    - key: image
+      type: file
+      src: ''
+      description: Optional skin image file
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test("Status code is 200", function () {
+          pm.response.to.have.status(200);
+      });
+      pm.test("Response time is less than 15000ms", function () {
+          pm.expect(pm.response.responseTime).to.be.below(15000);
+      });
+      pm.test("Response is JSON", function () {
+          pm.response.to.be.json;
+      });
+      pm.test("Response has a 'result' field", function () {
+          const json = pm.response.json();
+          pm.expect(json).to.have.property("result");
+      });
+      pm.test("'result' is a non-empty string", function () {
+          const json = pm.response.json();
+          pm.expect(json.result).to.be.a("string").and.to.have.length.above(0);
+      });

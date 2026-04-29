@@ -1,0 +1,41 @@
+$kind: http-request
+name: AI Medical Chat
+method: POST
+url: '{{baseUrl}}/api/chat'
+order: 1000
+description: Chat with the AI medical assistant. Provide a message and current vitals context.
+headers:
+  - key: Content-Type
+    value: application/json
+body:
+  type: json
+  content: |-
+    {
+      "message": "Is my heart rate normal?",
+      "context": {
+        "Temperature": 37.2,
+        "BPM": 85,
+        "Cough": 1
+      }
+    }
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test("Status code is 200", function () {
+          pm.response.to.have.status(200);
+      });
+      pm.test("Response time is less than 10000ms", function () {
+          pm.expect(pm.response.responseTime).to.be.below(10000);
+      });
+      pm.test("Response is JSON", function () {
+          pm.response.to.be.json;
+      });
+      pm.test("Response has a 'reply' field", function () {
+          const json = pm.response.json();
+          pm.expect(json).to.have.property("reply");
+      });
+      pm.test("'reply' is a non-empty string", function () {
+          const json = pm.response.json();
+          pm.expect(json.reply).to.be.a("string").and.to.have.length.above(0);
+      });

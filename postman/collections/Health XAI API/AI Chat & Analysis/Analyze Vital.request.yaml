@@ -1,0 +1,37 @@
+$kind: http-request
+name: Analyze Vital
+method: POST
+url: '{{baseUrl}}/api/analyze_vital'
+order: 2000
+description: Get AI-powered analysis for a specific vital sign. Returns status, explanation, and actionable advice.
+headers:
+  - key: Content-Type
+    value: application/json
+body:
+  type: json
+  content: |-
+    {
+      "vital": "Heart Rate",
+      "value": "95 BPM"
+    }
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test("Status code is 200", function () {
+          pm.response.to.have.status(200);
+      });
+      pm.test("Response time is less than 10000ms", function () {
+          pm.expect(pm.response.responseTime).to.be.below(10000);
+      });
+      pm.test("Response is JSON", function () {
+          pm.response.to.be.json;
+      });
+      pm.test("Response has an 'analysis' field", function () {
+          const json = pm.response.json();
+          pm.expect(json).to.have.property("analysis");
+      });
+      pm.test("'analysis' is a non-empty string", function () {
+          const json = pm.response.json();
+          pm.expect(json.analysis).to.be.a("string").and.to.have.length.above(0);
+      });

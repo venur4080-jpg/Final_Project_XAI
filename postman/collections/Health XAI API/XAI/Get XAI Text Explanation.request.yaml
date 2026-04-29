@@ -1,0 +1,26 @@
+$kind: http-request
+name: Get XAI Text Explanation
+method: GET
+url: '{{baseUrl}}/api/xai/explanation'
+order: 5000
+description: 'Returns the XAI text explanation as JSON { "text": "..." }.'
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      pm.test("Status code is 200", function () {
+          pm.response.to.have.status(200);
+      });
+      pm.test("Response is JSON", function () {
+          pm.response.to.be.json;
+      });
+      pm.test("Response time is less than 3000ms", function () {
+          pm.expect(pm.response.responseTime).to.be.below(3000);
+      });
+      const json = pm.response.json();
+      pm.test("Response has a 'text' field", function () {
+          pm.expect(json).to.have.property("text");
+      });
+      pm.test("'text' is a non-empty string", function () {
+          pm.expect(json.text).to.be.a("string").and.to.have.length.above(0);
+      });
