@@ -6,10 +6,7 @@ load_dotenv()
 
 # List of API keys supplied by the user
 USER_SUPPLIED_KEYS = [
-    "AIzaSyAngc__ZWSN5JxG5vPvceJZtHxUCIcpKYg",
-    "AIzaSyCS0su8aXyMp8ysgXh6o6eR8uTY7fWRh-I",
-    "AIzaSyBIr1OvwVDo_vkv_5tb2yaDemcxgbWfAmc",
-    "AIzaSyDn8eW89HOJLq8MabbqTjw5gI1cZY_4vTo"
+    "GEMINI_API_KEY"
 ]
 
 # Extract potential .env key if present and add to rotation (skip duplicates)
